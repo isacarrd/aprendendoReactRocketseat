@@ -1,0 +1,58 @@
+0-modelo.html<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React.js - RocketSeat</title>
+</head>
+
+<body>
+  <!-- DIV RESPONSAVEL POR RENDERIZAR A APLICAÇÃO NO REACT -->
+  <div id="root"></div>
+
+  <!-- para rodar o react de forma dinâmica -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    function ListNames(){
+      const [names] = React.useState(['Diego', 'Gabriel', 'Lucas', 'José Carlos', 'Carlos', 'Rodrigo', 'Maria', 'João', 'Ana', 'Carla'])
+      const [search, setSearch] = React.useState('')
+      return(
+        <ul>
+          <input type="text" 
+            placeholder="Buscando nomes"
+            value={search}
+            onChange={evt => setSearch(evt.target.value)}
+          />
+          {names
+            .filter(names => 
+            // busca inteligente: vê se algum nome inclui o valor da minha busca
+            names.toLowerCase().includes(search.toLowerCase())
+          )
+            .map((name, index) => 
+            <li >
+              {name}
+            </li>
+            )}
+        </ul>
+      )
+    }
+
+    function App() {
+      return (
+        <main>
+          <ListNames/>
+        </main>
+      )
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <App />
+    )
+  </script>
+</body>
+
+</html>
