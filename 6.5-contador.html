@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React.js - RocketSeat</title>
+</head>
+
+<body>
+  <!-- DIV RESPONSAVEL POR RENDERIZAR A APLICAÇÃO NO REACT -->
+  <div id="root"></div>
+
+  <!-- para rodar o react de forma dinâmica -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    // Feito por mim (utilizar o estado diretamente deste modo pode não ser muito recomendável (no caso do counter))
+    function Contador1() {
+      const [counter, setCounter] = React.useState(0)
+
+      if (counter >= 10) {
+        alert('O contador chegou a 10, reiniciando...')
+        setCounter(0)
+      } else if (counter < 0) {
+        alert('O contador chegou a 0!')
+        setCounter(0)
+      }
+
+      return (
+        <main className="h-dvh flex items-center justify-center">
+          <div className="bg-zinc-800 p-6 rounded-3xl">
+            <h1 className="text-4xl">Componente - Contador1</h1>
+            <h2 className="text-2xl">Contador {counter}</h2>
+            <button
+              type="button"
+              onClick={() => setCounter(counter + 1)}
+              className="bg-red-800 text-white px-3 rounded-md font-bold hover:bg-black cursor-pointer">Acrescentar
+            </button>
+            <button
+              type="button"
+              onClick={() => setCounter(counter - 1)}
+              className="bg-red-800 text-white px-3 rounded-md font-bold hover:bg-black cursor-pointer">Diminuir
+            </button>
+          </div>
+        </main>
+      )
+    }
+
+    // Feito pela RocketSeat
+    function Contador2() {
+      const [counter, setCounter] = React.useState(0)
+
+      if (counter >= 20) {
+        alert('O contador chegou a 20, reiniciando...')
+        setCounter(0)
+      } else if (counter < 0) {
+        alert('O contador chegou a 0!')
+        setCounter(0)
+      }
+
+      return (
+        <main className="h-dvh flex items-center justify-center">
+          <div className="bg-zinc-800 p-6 rounded-3xl">
+            <h1 className="text-4xl">Componente - Contador2</h1>
+            <h2 className="text-2xl">Contador {counter}</h2>
+            <button
+              type="button"
+              onClick={() => setCounter(10)}
+              className="bg-red-800 text-white px-3 rounded-md font-bold hover:bg-black cursor-pointer">Atualizar
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setCounter((prevValue) => prevValue + 1)}
+              className="bg-red-800 text-white px-3 rounded-md font-bold hover:bg-black cursor-pointer">Acrescentar
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setCounter((prevValue) => prevValue - 1)}
+              className="bg-red-800 text-white px-3 rounded-md font-bold hover:bg-black cursor-pointer">Decrementar
+            </button>
+          </div>
+        </main>
+      )
+    }
+    
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <>
+        <Contador1 />
+        <Contador2 />
+      </>
+    )
+  </script>
+</body>
+
+</html>
